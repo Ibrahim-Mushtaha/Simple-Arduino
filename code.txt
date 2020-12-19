@@ -27,17 +27,17 @@ void checkvalue(){
    int val=digitalRead(btn_run);  
   if(val==LOW){
     if(n==1)
-      run(blue_led,100);
+      run(blue_led,120);
      else if(n==2)
-      run(white_led,500);
+      run(white_led,600);
      else if(n==3)
-      run(green_led,800);
+      run(green_led,1000);
      else if(n==4)
        run(green2_led,1200);
      else if(n==5)
-        run(red2_led,1400);
+        run(red2_led,1500);
      else if(n==6){
-     run(led_orange,1100);
+     run(led_orange,1300);
       n=0;
     }
     n++;
@@ -49,12 +49,12 @@ void run(int Ledtype,int start){
  digitalWrite(Ledtype, HIGH);
  delay(1000);
  digitalWrite(Ledtype, LOW);
- delay(100);
+ delay(80);
  tone(piezo1,start);
- delay(1200);
+ delay(1000);
  noTone(piezo1);
  delay(100);
  tone(piezo2,start+100);
- delay(1200);
+ delay(1000);
  noTone(piezo2);
 }
