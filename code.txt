@@ -1,0 +1,60 @@
+int blue_led=11, white_led=12, green_led=13, green2_led=10;
+int red2_led=9, led_orange=8, piezo1=3, piezo2=4,btn_run=2;
+int n=1;
+
+void setup()
+{
+  pinMode(blue_led, OUTPUT);
+  pinMode(white_led, OUTPUT);
+  pinMode(green_led, OUTPUT);
+  
+  pinMode(green2_led, OUTPUT);
+  pinMode(red2_led, OUTPUT);
+  
+  pinMode(led_orange, OUTPUT);
+  
+  pinMode(piezo1, OUTPUT);
+  pinMode(piezo2, OUTPUT);
+  
+  pinMode(btn_run, INPUT_PULLUP);
+}
+
+void loop(){
+	checkvalue();
+}
+
+void checkvalue(){
+   int val=digitalRead(btn_run);  
+  if(val==LOW){
+    if(n==1)
+      run(blue_led,100);
+     else if(n==2)
+      run(white_led,500);
+     else if(n==3)
+      run(green_led,800);
+     else if(n==4)
+       run(green2_led,1200);
+     else if(n==5)
+        run(red2_led,1400);
+     else if(n==6){
+     run(led_orange,1100);
+      n=0;
+    }
+    n++;
+      
+  } 
+}
+
+void run(int Ledtype,int start){
+ digitalWrite(Ledtype, HIGH);
+ delay(1000);
+ digitalWrite(Ledtype, LOW);
+ delay(100);
+ tone(piezo1,start);
+ delay(1200);
+ noTone(piezo1);
+ delay(100);
+ tone(piezo2,start+100);
+ delay(1200);
+ noTone(piezo2);
+}
